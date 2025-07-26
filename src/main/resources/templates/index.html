@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<section>
+    <h1>Все посты</h1>
+    <div th:each="post : ${posts}">
+        <h3><a th:href="@{'/posts/' + ${post.id}}"
+               th:text="${post.title}">Заголовок</a></h3>
+        <p th:text="${#strings.abbreviate(post.content, 150)}">Кратко</p>
+        <p>Автор: <span th:text="${post.author.username}">Имя</span></p>
+    </div>
+</section>
+</html>

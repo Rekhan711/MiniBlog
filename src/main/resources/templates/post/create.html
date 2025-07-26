@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<section>
+    <h2 th:text="${post.id != null} ? 'Редактировать пост' : 'Создать пост'">Форма</h2>
+    <form th:action="@{${formAction}}" method="post" th:object="${post}">
+        <label>Заголовок:
+            <input type="text" th:field="*{title}" required />
+        </label><br/>
+
+        <label>Текст:
+            <textarea th:field="*{content}" required></textarea>
+        </label><br/>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</section>
+</html>

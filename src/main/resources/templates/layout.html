@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MiniBlog</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <!-- Навигация -->
+</header>
+
+<main th:fragment="layout">
+    <div th:replace="~{::section}" />
+</main>
+
+<footer>
+    <p>© MiniBlog 2025</p>
+</footer>
+</body>
+</html>

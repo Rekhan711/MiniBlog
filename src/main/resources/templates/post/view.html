@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<section>
+    <h2 th:text="${post.title}">Заголовок</h2>
+    <p th:text="${post.content}">Содержимое</p>
+    <p>Автор: <span th:text="${post.author.username}">Имя</span></p>
+
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <a th:href="@{'/posts/edit/' + ${post.id}}">Редактировать</a> |
+        <a th:href="@{'/posts/delete/' + ${post.id}}">Удалить</a>
+    </div>
+
+    <hr/>
+    <h3>Комментарии:</h3>
+    <div th:each="comment : ${post.comments}">
+        <p><strong th:text="${comment.author.username}">Автор</strong>: <span th:text="${comment.content}">Комментарий</span></p>
+    </div>
+
+    <form th:action="@{'/comments/create/' + ${post.id}}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
+        <textarea name="content" required></textarea>
+        <button type="submit">Добавить</button>
+    </form>
+</section>
+</html>
